@@ -11,8 +11,6 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setErrors({});
-
     const formData = { username, password };
     try {
       const res = await fetch(
@@ -77,9 +75,6 @@ const LoginPage = () => {
                   placeholder="Enter your username"
                 />
               </div>
-              {errors.email && (
-                <p className="mt-2 text-xs text-red-600">{errors.email}</p>
-              )}{" "}
             </div>
 
             <div>
@@ -99,12 +94,12 @@ const LoginPage = () => {
                   placeholder="Enter your password"
                 />
               </div>
-              {errors.password && (
-                <p className="mt-2 text-xs text-red-600">{errors.password}</p>
-              )}{" "}
-              {/* Display password errors */}
             </div>
-
+            <div className="">
+              {errors && (
+                <div className="text-red-500 text-sm">{errors?.error}</div>
+              )}
+            </div>
             <div>
               <button
                 type="submit"
