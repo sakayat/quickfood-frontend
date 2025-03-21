@@ -5,9 +5,10 @@ import Link from "next/link";
 import Cart from "@/components/Cart";
 import OrderHistory from "@/components/OrderHistory";
 import OrderSummary from "@/components/OrderSummary";
+import OrderForm from "@/components/OrderForm";
 
 const CartPage = () => {
-  const { cartItems } = useCart();
+  const { cartItems, calculateTotal } = useCart();
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -41,8 +42,15 @@ const CartPage = () => {
                 {cartItems.map((item) => (
                   <OrderSummary item={item} key={item.id} />
                 ))}
+                <div className="border-t pt-4 mt-4">
+                  <div className="flex justify-between font-bold">
+                    <span>Total</span>
+                    <span>${calculateTotal()}</span>
+                  </div>
+                </div>
               </div>
             </div>
+            <OrderForm />
           </div>
         </div>
       )}

@@ -60,7 +60,7 @@ const OrderForm = () => {
   };
 
   return (
-    <form className="space-y-3" onSubmit={handlePlaceOrder}>
+    <form className="space-y-3 mt-3" onSubmit={handlePlaceOrder}>
       <label
         htmlFor="delivery-address"
         className="block text-sm font-medium text-gray-700"

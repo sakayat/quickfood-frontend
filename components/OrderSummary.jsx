@@ -15,13 +15,8 @@ const OrderSummary = ({ item }) => {
         </span>
         <span>${item.price * item.quantity}</span>
       </div>
-      <div className="border-t pt-4 mt-4">
-        <div className="flex justify-between font-bold">
-          <span>Total</span>
-          <span>${calculateTotal()}</span>
-        </div>
-      </div>
-      <OrderForm />
+      
+      
     </div>
   );
 };
