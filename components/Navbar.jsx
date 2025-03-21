@@ -1,21 +1,19 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { useAuth } from "@/app/context/AuthContext";
 
 const Navbar = () => {
-  const [user, setUser] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-
-    if (token) {
-      setUser(true);
-    }
-  }, []);
+  const router = useRouter();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
-    setUser(null);
+    Cookies.remove("token");
+    setIsAuthenticated(false);
+    router.push("/login");
   };
 
   return (
@@ -34,7 +32,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-3">
-            {user ? (
+            {isAuthenticated ? (
               <>
                 <Link
                   href="/profile"

@@ -1,12 +1,16 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { useAuth } from "@/app/context/AuthContext";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const router = useRouter();
+
+  const { setIsAuthenticated } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +30,8 @@ const LoginPage = () => {
 
       if (res.ok) {
         localStorage.setItem("access_token", data.tokens.access);
+        Cookies.set("token", data.tokens.access, { expires: 7 });
+        setIsAuthenticated(true);
         if (data.user.role === "user") {
           router.push("/profile");
         } else if (data.user.role === "restaurant_owner") {
