@@ -7,6 +7,19 @@ import Header from "./Header";
 import { useAuth } from "../context/AuthContext";
 
 const DashboardLayout = ({ children }) => {
+  const router = useRouter();
+  const { isAuthenticated, userRole, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading) {
+      if (!isAuthenticated) {
+        router.push("/login");
+      } else if (userRole !== "restaurant_owner") {
+        router.push("/profile");
+      }
+    }
+  }, [isAuthenticated, userRole, loading, router]);
+
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100">
       <Sidebar />

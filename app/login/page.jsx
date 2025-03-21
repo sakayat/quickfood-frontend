@@ -30,6 +30,7 @@ const LoginPage = () => {
 
       if (res.ok) {
         localStorage.setItem("access_token", data.tokens.access);
+        localStorage.setItem("user_role", data.user.role);
         Cookies.set("token", data.tokens.access, { expires: 7 });
         setIsAuthenticated(true);
         if (data.user.role === "user") {
