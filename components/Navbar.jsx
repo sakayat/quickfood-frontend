@@ -4,10 +4,15 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { useAuth } from "@/app/context/AuthContext";
+import { useCart } from "@/app/context/CartContext";
+import { ShoppingCart } from "lucide-react";
 
 const Navbar = () => {
   const router = useRouter();
   const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const { cartItems } = useCart();
+
+  const countItem = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -34,6 +39,14 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             {isAuthenticated ? (
               <>
+                <Link href="/cart" className="relative">
+                  <ShoppingCart className="h-5 w-5" />
+                  {countItem > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {countItem}
+                    </span>
+                  )}
+                </Link>
                 <Link
                   href="/profile"
                   className="text-gray-600 hover:text-gray-900"
@@ -48,12 +61,22 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
-              <Link
-                href="/login"
-                className="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-black"
-              >
-                Sign In
-              </Link>
+              <div className="flex items-center gap-5">
+                <Link href="/cart" className="relative">
+                  <ShoppingCart className="h-6 w-6" />
+                  {countItem > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {countItem}
+                    </span>
+                  )}
+                </Link>
+                <Link
+                  href="/login"
+                  className="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-black"
+                >
+                  Sign In
+                </Link>
+              </div>
             )}
           </div>
         </div>

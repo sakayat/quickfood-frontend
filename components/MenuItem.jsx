@@ -1,6 +1,21 @@
+import { useCart } from "@/app/context/CartContext";
 import React from "react";
 
 const MenuItem = ({ item }) => {
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem({
+      id: item.id,
+      menu_item_id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      quantity: 1,
+      restaurant_id: item.restaurant_id,
+    });
+  };
+
   return (
     <div className="bg-white rounded-lg overflow-hidden border border-gray-200  flex">
       <div className="w-1/3 bg-gray-200">
@@ -28,7 +43,10 @@ const MenuItem = ({ item }) => {
           {item.description}
         </p>
         <div className="mt-4">
-          <button className="bg-black text-white px-4 py-2 rounded text-sm  flex items-center gap-1">
+          <button
+            className="bg-black text-white px-4 py-2 rounded text-sm  flex items-center gap-1"
+            onClick={handleAddToCart}
+          >
             Add to Cart
           </button>
         </div>
