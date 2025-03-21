@@ -5,7 +5,7 @@ import React from "react";
 
 const RestaurantList = ({ item }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-lg border border-gray-200">
       <div className="h-48 bg-gray-200 relative">
         {item.image ? (
           <img
