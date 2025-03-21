@@ -1,9 +1,12 @@
+import FeaturedRestaurants from "@/components/FeaturedRestaurants";
+import Hero from "@/components/Hero";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <div>
-      <h1>welcome to homepage</h1>
+      <Hero />
+      <FeaturedRestaurants />
     </div>
   );
 }
