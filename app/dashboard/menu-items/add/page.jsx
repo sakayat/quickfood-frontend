@@ -60,7 +60,7 @@ const AddMenuPage = () => {
     <div className="container mx-auto px-4 max-w-3xl">
       <div className="mb-6">
         <Link
-          href="/dashboard/menu"
+          href="/dashboard/menu-items"
           className="flex items-center text-gray-600 hover:text-black"
         >
           <ArrowLeft size={18} className="mr-2" />

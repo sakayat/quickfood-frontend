@@ -15,7 +15,6 @@ import { useAuth } from "@/app/context/AuthContext";
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { user } = useAuth();
 
   const isActive = (path) => pathname === path;
 

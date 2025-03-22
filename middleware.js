@@ -33,7 +33,7 @@ export const config = {
     "/",
     "/login",
     "/register",
-    "/profile/:path*,",
+    "/profile/:path*",
     "/dashboard/:path*",
   ],
 };
