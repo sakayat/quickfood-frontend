@@ -14,8 +14,8 @@ const RestaurantsItem = ({ item }) => {
       <div className="h-48 bg-gray-200 relative">
         {item.image ? (
           <img
-            src={restaurant.image}
-            alt={restaurant.name}
+            src={`${process.env.NEXT_PUBLIC_URL}/${item.image}`}
+            alt={item.name}
             className="w-full h-full object-cover"
           />
         ) : (

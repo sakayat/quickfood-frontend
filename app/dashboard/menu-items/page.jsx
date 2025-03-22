@@ -106,6 +106,12 @@ const MenuPage = () => {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
+                  Image
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Name
                 </th>
                 <th
@@ -132,6 +138,13 @@ const MenuPage = () => {
               {menuItems.map((item) => (
                 <tr key={item.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_URL}/${item.image}`}
+                      alt={item.name}
+                      className="w-20 h-14 object-cover rounded-lg"
+                    />
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
                       {item.name}
                     </div>
@@ -142,14 +155,12 @@ const MenuPage = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">
-                      ${parseFloat(item.price).toFixed(2)}
-                    </div>
+                    <div className="text-sm text-gray-900">${item.price}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex justify-end gap-4">
                       <Link
-                        href={`/dashboard/menu/edit/${item.id}`}
+                        href={`/dashboard/menu-items/edit/${item.id}`}
                         className="text-blue-600 hover:text-blue-800"
                       >
                         <Edit size={18} />

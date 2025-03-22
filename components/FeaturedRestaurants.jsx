@@ -20,6 +20,10 @@ const FeaturedRestaurants = () => {
         }
       );
       const data = await res.json();
+
+      console.log(data);
+      
+
       setRestaurants(data.slice(0, 6));
     } catch (error) {
       console.error("Error fetching restaurants:", err);

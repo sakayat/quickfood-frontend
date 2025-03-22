@@ -79,7 +79,7 @@ const EditMenuItemPage = ({ params }) => {
       setSuccess(true);
       setSubmitting(false);
 
-      router.push("/dashboard/menu");
+      router.push("/dashboard/menu-items");
     } catch (error) {
       console.error(error);
       setError(error.message);

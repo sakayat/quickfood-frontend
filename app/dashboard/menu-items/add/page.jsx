@@ -8,6 +8,7 @@ const AddMenuPage = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [imageFile, seImageFile] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -20,19 +21,24 @@ const AddMenuPage = () => {
 
     try {
       const token = localStorage.getItem("access_token");
+
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/create-menus/`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            name,
-            description,
-            price,
-          }),
+          body: formData,
         }
       );
 
@@ -53,6 +59,12 @@ const AddMenuPage = () => {
       console.error(error);
       setError(error.message);
       setSubmitting(false);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      seImageFile(e.target.files[0]);
     }
   };
 
@@ -128,6 +140,19 @@ const AddMenuPage = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
               required
               placeholder="e.g. 12.99"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="image" className="block mb-2 text-gray-700">
+              Image
+            </label>
+            <input
+              type="file"
+              id="image"
+              onChange={handleImageChange}
+              accept="image/*"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
             />
           </div>
 

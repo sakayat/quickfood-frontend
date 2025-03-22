@@ -10,6 +10,8 @@ const EditRestaurantPage = ({ params }) => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
+  const [imageFile, seImageFile] = useState("");
+  const [currentImage, setCurrentImage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -19,6 +21,7 @@ const EditRestaurantPage = ({ params }) => {
     const fetchRestaurant = async () => {
       try {
         const token = localStorage.getItem("access_token");
+
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/restaurant/${id}/`,
           {
@@ -34,9 +37,12 @@ const EditRestaurantPage = ({ params }) => {
         }
 
         const data = await response.json();
+
         setName(data.name);
         setDescription(data.description);
         setLocation(data.location);
+        setCurrentImage(data.image);
+
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -54,20 +60,25 @@ const EditRestaurantPage = ({ params }) => {
 
     try {
       const token = localStorage.getItem("access_token");
+
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("location", location);
+
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/update-restaurant/`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            id: parseInt(id),
-            name,
-            description,
-            location,
-          }),
+          body: formData,
         }
       );
 
@@ -83,6 +94,12 @@ const EditRestaurantPage = ({ params }) => {
     } catch (error) {
       setError(error.message);
       setSubmitting(false);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      seImageFile(e.target.files[0]);
     }
   };
 
@@ -157,6 +174,30 @@ const EditRestaurantPage = ({ params }) => {
               onChange={(e) => setLocation(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
               required
+            />
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="image" className="block mb-2 text-gray-700">
+              Restaurant Image
+            </label>
+            {currentImage && (
+              <div className="mb-3">
+                <div className="w-32 h-32 relative bg-gray-100 rounded">
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_URL}/${currentImage}`}
+                    alt={name}
+                    className="object-cover w-full h-full rounded"
+                  />
+                </div>
+              </div>
+            )}
+            <input
+              type="file"
+              id="image"
+              onChange={handleImageChange}
+              accept="image/*"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
             />
           </div>
 
