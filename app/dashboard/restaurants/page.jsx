@@ -99,11 +99,11 @@ const RestaurantsPage = () => {
           </Link>
         </div>
       ) : (
-        <div className="w-full">
+        <div className="w-full space-y-5">
           {restaurants.map((restaurant) => (
             <div
               key={restaurant.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="bg-white rounded-lg overflow-hidden "
             >
               <div className="p-6">
                 <h2 className="text-xl font-semibold mb-2">{restaurant.name}</h2>
