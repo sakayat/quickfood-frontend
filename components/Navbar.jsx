@@ -9,7 +9,8 @@ import { ShoppingCart } from "lucide-react";
 
 const Navbar = () => {
   const router = useRouter();
-  const { isAuthenticated, setIsAuthenticated, user } = useAuth();
+  const { isAuthenticated, setIsAuthenticated, userRole } = useAuth();
+  
   const { cartItems } = useCart();
 
   const countItem = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -21,7 +22,6 @@ const Navbar = () => {
     router.push("/login");
   };
 
-  const role = localStorage.getItem("user_role");
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -49,7 +49,7 @@ const Navbar = () => {
                     </span>
                   )}
                 </Link>
-                {role === "restaurant_owner" && (
+                {userRole === "restaurant_owner" && (
                   <Link
                     href="/dashboard"
                     className="text-gray-600 hover:text-gray-900"

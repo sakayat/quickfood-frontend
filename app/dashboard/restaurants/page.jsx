@@ -18,7 +18,7 @@ const RestaurantsPage = () => {
     try {
       const token = localStorage.getItem("access_token");
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/restaurants/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/owner-restaurants/`,
         {
           method: "GET",
           headers: {
@@ -48,7 +48,7 @@ const RestaurantsPage = () => {
     try {
       const token = localStorage.getItem("access_token");
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/delete-restaurant/${id}/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/delete-restaurant/`,
         {
           method: "DELETE",
           headers: {
@@ -81,7 +81,7 @@ const RestaurantsPage = () => {
         <h1 className="text-2xl font-bold">My Restaurants</h1>
         <Link
           href="/dashboard/restaurants/add"
-          className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
+          className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-md"
         >
           <PlusCircle size={18} />
           <span>Add Restaurant</span>
@@ -91,12 +91,6 @@ const RestaurantsPage = () => {
       {restaurants.length === 0 ? (
         <div className="bg-white rounded-lg shadow-md p-6 text-center">
           <p className="text-gray-500 mb-4">No restaurants found</p>
-          <Link
-            href="/dashboard/restaurants/add"
-            className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
-          >
-            Add Your Restaurant
-          </Link>
         </div>
       ) : (
         <div className="w-full space-y-5">
@@ -106,7 +100,9 @@ const RestaurantsPage = () => {
               className="bg-white rounded-lg overflow-hidden "
             >
               <div className="p-6">
-                <h2 className="text-xl font-semibold mb-2">{restaurant.name}</h2>
+                <h2 className="text-xl font-semibold mb-2">
+                  {restaurant.name}
+                </h2>
                 <p className="text-gray-600 mb-3">{restaurant.description}</p>
                 <p className="text-gray-500 text-sm mb-4">
                   <span className="font-medium">Location:</span>{" "}
@@ -127,7 +123,6 @@ const RestaurantsPage = () => {
                     <Trash2 size={16} className="mr-1" />
                     Delete
                   </button>
-
                 </div>
               </div>
             </div>
@@ -138,4 +133,4 @@ const RestaurantsPage = () => {
   );
 };
 
-export default RestaurantsPage; 
+export default RestaurantsPage;
