@@ -22,6 +22,8 @@ export default function Sidebar() {
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Restaurants", href: "/dashboard/restaurants", icon: Store },
+    { name: "Add Menu Item", href: "/dashboard/menu-items/add", icon: PlusCircle },
+    { name: "View Menu Items", href: "/dashboard/menu-items", icon: MenuIcon },
     { name: "All Orders", href: "/dashboard/orders", icon: ShoppingBag },
   ];
 
