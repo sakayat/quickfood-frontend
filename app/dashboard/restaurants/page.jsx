@@ -95,26 +95,24 @@ const RestaurantsPage = () => {
             href="/dashboard/restaurants/add"
             className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
           >
-            Add Your First Restaurant
+            Add Your Restaurant
           </Link>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full">
           {restaurants.map((restaurant) => (
             <div
               key={restaurant.id}
               className="bg-white rounded-lg shadow-md overflow-hidden"
             >
               <div className="p-6">
-                <h2 className="text-xl font-semibold mb-2">
-                  {restaurant.name}
-                </h2>
+                <h2 className="text-xl font-semibold mb-2">{restaurant.name}</h2>
                 <p className="text-gray-600 mb-3">{restaurant.description}</p>
                 <p className="text-gray-500 text-sm mb-4">
                   <span className="font-medium">Location:</span>{" "}
                   {restaurant.location}
                 </p>
-                <div className="flex flex-wrap justify-between mt-4 gap-2">
+                <div className="flex flex-wrap justify-end mt-4 gap-4">
                   <Link
                     href={`/dashboard/restaurants/edit/${restaurant.id}`}
                     className="flex items-center text-blue-600 hover:text-blue-800"
@@ -130,13 +128,6 @@ const RestaurantsPage = () => {
                     Delete
                   </button>
 
-                  <Link
-                    href={`/dashboard/restaurants/menus/${restaurant.id}`}
-                    className="flex items-center text-purple-600 hover:text-purple-800"
-                  >
-                    <Book size={16} className="mr-1" />
-                    View Menus
-                  </Link>
                 </div>
               </div>
             </div>
@@ -147,4 +138,4 @@ const RestaurantsPage = () => {
   );
 };
 
-export default RestaurantsPage;
+export default RestaurantsPage; 
