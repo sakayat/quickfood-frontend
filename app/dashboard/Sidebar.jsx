@@ -23,10 +23,6 @@ export default function Sidebar() {
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Restaurants", href: "/dashboard/restaurants", icon: Store },
     { name: "All Orders", href: "/dashboard/orders", icon: ShoppingBag },
-    { name: "View Menu", href: "/dashboard/menu", icon: MenuIcon },
-    { name: "Add Menu Item", href: "/dashboard/menu/add", icon: PlusCircle },
-    { name: "Menu Categories", href: "/dashboard/categories", icon: Tag },
-    { name: "Menus", href: "/dashboard/menus", icon: BookOpen },
   ];
 
   return (
