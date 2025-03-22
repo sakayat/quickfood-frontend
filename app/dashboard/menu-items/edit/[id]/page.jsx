@@ -10,6 +10,8 @@ const EditMenuItemPage = ({ params }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(true);
+  const [imageFile, seImageFile] = useState("");
+  const [currentImage, setCurrentImage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -22,6 +24,7 @@ const EditMenuItemPage = ({ params }) => {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("access_token");
+
       const menuItemResponse = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/menu-item/${id}/`,
         {
@@ -40,6 +43,7 @@ const EditMenuItemPage = ({ params }) => {
       setName(menuItemData.name);
       setDescription(menuItemData.description);
       setPrice(menuItemData.price);
+      setCurrentImage(menuItemData.image);
       setLoading(false);
     } catch (error) {
       console.error("API Error:", error);
@@ -55,19 +59,25 @@ const EditMenuItemPage = ({ params }) => {
 
     try {
       const token = localStorage.getItem("access_token");
+
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/menu-update/${id}/`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            name,
-            description,
-            price: price,
-          }),
+          body: formData,
         }
       );
 
@@ -84,6 +94,12 @@ const EditMenuItemPage = ({ params }) => {
       console.error(error);
       setError(error.message);
       setSubmitting(false);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      seImageFile(e.target.files[0]);
     }
   };
 
@@ -160,6 +176,30 @@ const EditMenuItemPage = ({ params }) => {
               min="0"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
               required
+            />
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="image" className="block mb-2 text-gray-700">
+              Image
+            </label>
+            {currentImage && (
+              <div className="mb-3">
+                <div className="w-32 h-32 relative bg-gray-100 rounded">
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_URL}/${currentImage}`}
+                    alt={name}
+                    className="object-cover w-full h-full rounded"
+                  />
+                </div>
+              </div>
+            )}
+            <input
+              type="file"
+              id="image"
+              onChange={handleImageChange}
+              accept="image/*"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
             />
           </div>
 
