@@ -127,10 +127,10 @@ const RestaurantDetailPage = () => {
 
           <div className="mt-8 flex justify-center">
             <Link
-              href={`/restaurants/${params.id}/menu`}
+              href={`/restaurants/${params.id}/menu-items`}
               className="inline-block bg-black text-white py-2 px-6 rounded-md"
             >
-              View Full Menu
+              View Menu Items
             </Link>
           </div>
         </div>
