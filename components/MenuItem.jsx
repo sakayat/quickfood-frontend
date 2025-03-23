@@ -21,7 +21,7 @@ const MenuItem = ({ item }) => {
       <div className="w-1/3 bg-gray-200">
         {item.image ? (
           <img
-            src={`${process.env.NEXT_PUBLIC_URL}/${item.image}`}
+            src={`${process.env.NEXT_PUBLIC_URL}${item.image}`}
             alt={item.name}
             className="w-full h-full object-cover"
           />

@@ -87,7 +87,7 @@ const RestaurantDetailPage = () => {
         <div className="h-64 bg-gray-200 relative">
           {restaurant.image ? (
             <img
-              src={`${process.env.NEXT_PUBLIC_URL}/${restaurant.image}`}
+              src={`${process.env.NEXT_PUBLIC_URL}${restaurant.image}`}
               alt={restaurant.name}
               className="w-full h-full object-cover"
             />

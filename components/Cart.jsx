@@ -22,7 +22,7 @@ const Cart = ({ item }) => {
       <div className="flex items-center space-x-4">
         {item.image && (
           <img
-            src={item.image}
+          src={`${process.env.NEXT_PUBLIC_URL}${item.image}`}
             alt={item.name}
             className="w-16 h-16 object-cover rounded-md"
           />
