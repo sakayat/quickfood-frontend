@@ -35,7 +35,6 @@ const Navbar = () => {
               <Link href="/">Home</Link>
               <Link href="/restaurants">Restaurants</Link>
               <Link href="/menu">Menu</Link>
-              <Link href="/about">About Us</Link>
             </ul>
           </div>
           <div className="flex items-center gap-3">
@@ -51,7 +50,7 @@ const Navbar = () => {
                 </Link>
                 {userRole === "restaurant_owner" && (
                   <Link
-                    href="/dashboard"
+                    href="/dashboard/restaurants"
                     className="text-gray-600 hover:text-gray-900"
                   >
                     Dashboard

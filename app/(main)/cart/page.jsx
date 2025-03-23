@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 import Link from "next/link";
 import Cart from "@/components/Cart";
 import OrderHistory from "@/components/OrderHistory";
