@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# QuickFood - Restaurant Management System
+
+QuickFood is a comprehensive restaurant management platform built with Next.js that helps restaurant owners manage their menus, track orders, and provide online food ordering services to customers.
+
+## Features
+
+### For Restaurant Owners
+
+- **Dashboard Overview**: Get a quick snapshot of your business with key metrics and recent activities
+- **Restaurant Management**: Add, edit, and manage restaurant locations
+- **Menu Management**: Create and organize menu items with descriptions, prices, and images
+- **Order Tracking**: Monitor incoming orders and update order statuses
+- **Customer Management**: View customer profiles and order history
+
+### For Customers
+
+- **Restaurant Discovery**: Browse through available restaurants
+- **Menu Browsing**: View restaurant menus with images and detailed descriptions
+- **Online Ordering**: Place food orders online with ease
+- **User Profiles**: Create accounts to save preferences and view order history
+
+## Tech Stack
+
+- **Frontend**: Next.js 14, React 18, TailwindCSS
+- **State Management**: React Context API
+- **UI Components**: Custom components with Tailwind styling
+- **Icons**: Lucide React
+- **Authentication**: JWT with HTTP-only cookies
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm or yarn
+- Backend API service running (see API setup below)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sakayat/quickfood-frontend.git
+   cd quickfood-frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory with the following variables:
+   ```
+   NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api
+   NEXT_PUBLIC_URL=http://127.0.0.1:8000
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+
+## Deployment
+
+This Next.js application can be deployed to Vercel or any other hosting service that supports Next.js applications.
 
 ```bash
-npm run dev
+# Build for production
+npm run build
 # or
-yarn dev
+yarn build
+
+# Start production server
+npm run start
 # or
-pnpm dev
-# or
-bun dev
+yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Backend
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This frontend application requires a backend API service. The backend provides:
+- User authentication and authorization
+- Restaurant and menu CRUD operations
+- Order processing and management
+- Image storage
