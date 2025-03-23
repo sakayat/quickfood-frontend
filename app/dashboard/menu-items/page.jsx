@@ -90,12 +90,7 @@ const MenuPage = () => {
       {menuItems.length === 0 ? (
         <div className="bg-white rounded-lg shadow-md p-6 text-center">
           <p className="text-gray-500 mb-4">No menu items found</p>
-          <Link
-            href="/dashboard/menu/add"
-            className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
-          >
-            Add Your First Menu Item
-          </Link>
+          
         </div>
       ) : (
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
